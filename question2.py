@@ -3,6 +3,8 @@ spark = SparkSession.builder \
     .master("yarn") \
     .appName("HelloLines") \
     .getOrCreate()
-
+sc = spark.sparkContext
 df = spark.read.csv("hdfs:/datasets/covid")
-df.printSchema()
+
+df.saveAsTextFile("hdfs:/user/luissilva/df")
+sc.stop()
